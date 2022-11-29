@@ -1,0 +1,35 @@
+
+-- cria restrição
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all; 
+USE ieee.numeric_std.all;
+
+
+ENTITY bloqueia IS 
+	PORT
+	(
+		clock		:	in std_logic;
+		coluna :  IN  STD_LOGIC_VECTOR(9 DOWNTO 0);
+		NaoTrava :  OUT  STD_LOGIC
+	);
+END bloqueia;
+
+ARCHITECTURE bloqueia OF bloqueia IS 
+	signal col : INTEGER RANGE 0 to 640;
+begin
+process(clock)
+begin
+	if (clock'event and clock = '1') then
+	
+	col <= to_integer(unsigned(coluna));
+	
+	if (col < 20 || col > 620) then NaoTrava <= '0';
+	else  a <= '1';
+	end if;
+	end if;
+
+end process;
+
+END bloqueia;
